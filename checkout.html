@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="getDetail(event)">
+    <input type="text" id="name" placeholder="Enter your name">
+    <input type="text" id="address" placeholder="Enter your address">
+    <input type="submit">
+
+    </form>
+    <div id="output"></div>
+</body>
+</html>
+<script>
+    let arr=[];
+    function getDetail(e){
+        e.preventDefault()
+        let detail={
+        name:document.getElementById("name").value,
+        address:document.getElementById("address").value
+        
+    }
+    arr.push(detail);
+    display()
+    function display(){
+        arr.map(function(elem){
+            let div=document.createElement("div");
+            let name1=document.createElement("h5");
+            let address1=document.createElement("p");
+            name1.textContent=elem.name;
+            address1.textContent=elem.address;
+            div.append(name1,address1);
+            document.getElementById("output").append(div);
+        })
+
+    }
+    setout( function(){
+        alert("Your order is accepted");
+    },0)
+     setout( function(){
+        alert("Your order is being cooked");
+    },3000)
+    setout( function(){
+        alert(`Your order is ready`);
+    },8000)
+    setout( function(){
+        alert(`Order out for delivery`);
+    },10000)
+     setout( function(){
+        alert(`Order delivered`);
+    },12000)
+}
+</script>

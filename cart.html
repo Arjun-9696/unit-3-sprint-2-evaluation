@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2{
+            text-align:end;
+        }
+         #foodlist{
+            width: 100%;
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+        }
+        a>button{
+            width: 100px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="nav">
+    <h1>Cart page</h1>
+    <a href="checkout.html"><button id="checkout">Checkout</button></a>
+<h2 id="h2"></h2>
+    </div>
+
+<div id="foodlist"></div>
+</body>
+</html>
+<script>
+    let food_arr=JSON.parse(localStorage.getItem("store:"));
+    displayCart();
+    function displayCart(){
+        food_arr.map(function(elem){
+            document.getElementById("h2").innerText=`Total Cart Items : ${food_arr.length}`;
+        let container=document.createElement("div");
+        container.setAttribute("id","cont")
+        let img=document.createElement("img");
+        let name=document.createElement("h2");
+        let detail=document.createElement("p");
+        let price=document.createElement("h4");
+        price.innerHTML = Math.floor(Math.random()*100+200);
+        img.src=elem.strCategoryThumb;
+        name.textContent=elem.strCategory;
+        detail.textContent=elem.strCategoryDescription;
+        let remove=document.createElement("button");
+        remove.setAttribute("id","remove");
+        remove.innerHTML="Remove";
+        remove.style.backgroundColor="red";
+        remove.style.color="white";
+        remove.addEventListener("click",function(){
+            document.getElementById("cont").innerHTML=null;
+        })
+    container.append(img,name,detail,price,remove);
+    document.getElementById("foodlist").append(container);
+        })
+    }
+</script>
